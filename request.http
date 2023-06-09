@@ -1,0 +1,31 @@
+POST http://localhost:3000/auth/register
+Content-Type: application/json
+
+{
+    "username": "Dung",
+    "email": "dungksnb00@gmail.com",
+    "password": "Tranvandung123"
+}
+
+###
+GET http://localhost:3000/get
+
+###
+GET http://localhost:3000/set
+
+###
+POST http://localhost:3000/auth/login
+Content-Type: application/json
+
+{
+    "email": "dungksnb00@gmail.com",
+    "password": "Tranvandung123"
+}
+
+###
+GET http://localhost:3000/auth/profile
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NDgxODI3ZDE3NDM3YzVmNDMwOTE3NWYiLCJpc0FkbWluIjpmYWxzZSwiaWF0IjoxNjg2MjE5Mjk0LCJleHAiOjE2ODYyMjAxOTR9.ZxPqftmeGd2izfjZkcCduD2XDQXvvqXnSPGZc802_vY
+
+###
+GET http://localhost:3000/todos
