@@ -25,7 +25,7 @@ Content-Type: application/json
 ###
 GET http://localhost:3000/auth/profile
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NDgxODI3ZDE3NDM3YzVmNDMwOTE3NWYiLCJpc0FkbWluIjpmYWxzZSwiaWF0IjoxNjg2MjE5Mjk0LCJleHAiOjE2ODYyMjAxOTR9.ZxPqftmeGd2izfjZkcCduD2XDQXvvqXnSPGZc802_vY
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NDgzZTM4MzUzMjFiYzljMmYzY2FhOWEiLCJpc0FkbWluIjpmYWxzZSwiaWF0IjoxNjg2MzY1MDY3LCJleHAiOjE2ODYzNjU5Njd9.BaMETTjLk_-ZmazRcOCCQQx5Q9uNOihvKw00UGZUJeo
 
 ###
 GET http://localhost:3000/todos

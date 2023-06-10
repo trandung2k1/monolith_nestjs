@@ -13,6 +13,7 @@ import { HttpModule } from '@nestjs/axios';
 
 @Module({
   imports: [
+    // config typeorm vs mssql
     // TypeOrmModule.forRoot({
     //   type: 'mssql',
     //   host: 'localhost',
@@ -28,17 +29,29 @@ import { HttpModule } from '@nestjs/axios';
     //     trustServerCertificate: true,
     //   },
     // }),
-    MongooseModule.forRoot('mongodb://127.0.0.1:27017/nestjs'),
+    //mongodb local
+    // MongooseModule.forRoot('mongodb://127.0.0.1:27017/nestjs'),
+    //mongodb docker
+    MongooseModule.forRoot('mongodb://mongo:27017/nestjs'),
     ThrottlerModule.forRoot({
       ttl: 60,
       limit: 60,
     }),
+    //redis local
+    // CacheModule.register({
+    //   store: redisStore as unknown as CacheStore,
+    //   host: 'localhost',
+    //   port: 6379,
+    //   isGlobal: true,
+    // }),
+    // redis docker
     CacheModule.register({
       store: redisStore as unknown as CacheStore,
-      host: 'localhost',
+      host: 'redis',
       port: 6379,
       isGlobal: true,
     }),
+    //config environment
     ConfigModule.forRoot({ isGlobal: true }),
     HttpModule,
     UsersModule,

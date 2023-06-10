@@ -15,10 +15,11 @@ async function bootstrap() {
   );
   app.enableCors();
   app.useGlobalPipes(new ValidationPipe({ transform: true }));
-  await app.listen(port);
+  await app.listen(port, '0.0.0.0');
   console.log(`Server running on http://localhost:${port}`);
 }
-if (cluster.isMaster) {
+//cluster not working docker
+if (cluster?.isMaster) {
   const cores = os.cpus().length;
   console.log(`Total cores: ${cores}`);
   console.log(`Primary process ${process.pid} is running`);
