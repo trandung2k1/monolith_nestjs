@@ -1,4 +1,4 @@
-FROM node:18-alpine
+FROM node:20-alpine
 
 WORKDIR /app
 
@@ -8,4 +8,4 @@ RUN yarn
 
 EXPOSE 3000
 
-CMD [ "yarn", "start:dev" ]
+CMD [ "npm", "run", "start:dev" ]
