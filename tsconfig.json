@@ -16,8 +16,10 @@
     "noImplicitAny": false,
     "strictBindCallApply": false,
     "forceConsistentCasingInFileNames": false,
-    "noFallthroughCasesInSwitch": false
+    "noFallthroughCasesInSwitch": false,
+    "typeRoots": ["./src/types", "./node_modules/@types"]
   },
+  // "files": ["src/types/index.d.ts"],
   "watchOptions": {
     "watchFile": "priorityPollingInterval",
     "watchDirectory": "dynamicprioritypolling",

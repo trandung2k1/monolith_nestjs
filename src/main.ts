@@ -6,7 +6,10 @@ import {
 } from '@nestjs/platform-fastify';
 import * as cluster from 'cluster';
 import * as os from 'os';
-import { INestApplication, ValidationPipe } from '@nestjs/common';
+import * as sql from 'mssql';
+import { INestApplication, Logger, ValidationPipe } from '@nestjs/common';
+import { optionsNotExits, sqlConfig } from './config';
+import { createDatabase } from 'typeorm-extension';
 const port = process.env.PORT || 3000;
 async function bootstrap() {
   const app = await NestFactory.create<NestFastifyApplication>(
@@ -15,12 +18,28 @@ async function bootstrap() {
   );
   app.enableCors();
   app.useGlobalPipes(new ValidationPipe({ transform: true }));
-  retryToStart(app, 10);
+  initDatabase()
+    .then(() => {
+      retryToStart(app, 10);
+    })
+    .catch((error) => Logger.error(error.message));
 }
-
-async function retryToStart(app: INestApplication, retryTime?: number) {
+async function initDatabase() {
+  const pool = await sql.connect(sqlConfig);
+  const arrayObjectDatabase = await pool.query(
+    'SELECT name FROM master.sys.databases',
+  );
+  const arrayDB = arrayObjectDatabase.recordset.map((db) => db.name);
+  if (arrayDB.includes(process.env.DATABASE_NAME)) {
+    console.log('Database already exists');
+  } else {
+    await createDatabase({ options: optionsNotExits });
+    console.log('Database created');
+  }
+}
+async function retryToStart(app: INestApplication, retryTime: number) {
   if (!retryTime) {
-    console.log('Không thể khởi chạy máy chủ');
+    console.log('Unable to launch server');
     return;
   }
   try {
